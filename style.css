@@ -1,0 +1,216 @@
+
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #000;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 10;
+    }
+    .hero {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      border-bottom: 1px solid #ccc;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav a {
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+    }
+
+    main {
+      margin-top: 0px; /* ← header の高さに合わせて */
+    }
+
+    section {
+      padding: 2rem;
+    }
+    .subtitle {
+      font-size: 0.9rem;
+      font-weight: bold;
+      border-left: 4px solid #000;
+      padding-left: 0.5rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+    .album {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 4rem;
+    }
+    .album-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .album-row {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .album-cover {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .tracklist {
+      flex: 1;
+    }
+    .track {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px dotted #ccc;
+      font-size: 0.9rem;
+    }
+    .play-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .wave {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .bar {
+      width: 2px;
+      height: 100%;
+      background: limegreen;
+      animation: bounce 1s infinite ease-in-out;
+    }
+    .bar:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    .bar:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    @keyframes bounce {
+      0%, 100% {
+        transform: scaleY(1);
+      }
+      50% {
+        transform: scaleY(2);
+      }
+    }
+    .now-playing {
+      color: limegreen;
+      font-size: 0.75rem;
+      margin-left: 0.5rem;
+    }
+    .album-id {
+      font-size: 0.7rem;
+      color: #666;
+      text-align: center;
+      margin-top: 0.3rem;
+    }
+    .album-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .album-id {
+      margin-top: 0.5em;
+      font-size: 0.9em;
+      color: #999;
+    }
+    .artist-description {
+      margin-top: 20px;
+      padding: 0 20px;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: #333;
+    }
+    .artist-description p {
+      margin-bottom: 1em;
+    }
+    section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1rem; /* 画面が狭いときも少し余白を */
+    }
+
+
+    .length {
+      margin-left: 10em;
+    }
+    .track {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.5em;
+      border-bottom: 1px dotted #ccc;
+      font-size: 0.9rem;
+    }
+    
+    .track-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-grow: 1;
+    }
+    
+    .length {
+      flex-shrink: 0;
+      min-width: 3em;
+      text-align: right;
+    }
+    .site-footer {
+      margin-top: 4em;
+      padding: 1em 2em;
+      font-size: 0.8em;
+      color: #999;
+      text-align: right;
+      position: relative;
+    }
+    
+    .site-footer hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin-bottom: 0.5em;
+    }
+    
+    .footer-text {
+      margin-top: 0.5em;
+    }
+    nav {
+      text-align: center;
+      margin-top: 1em;
+    }
+    
+    nav a {
+      margin: 0 4em; /* ←ここで文字間を調整 */
+      text-decoration: none;
+      font-size: 1em;
+      color: black;
+    }
+    
+    [id] {
+      scroll-margin-top: 350px;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    

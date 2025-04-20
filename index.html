@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unknown Useless Orchestra</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <img src="header-image.jpg" alt="Unknown Useless Orchestra" class="hero" />
+    <nav>
+      <a href="#music">MUSIC</a>
+      <a href="#artist">ABOUT</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </header>
+
+  <main>
+  <div style="text-align: center; margin-top: 2em; font-size: 1.２em;">
+    Welcome to UUO Site.<br /><br />
+  </div>
+
+
+  <section id="music">
+    <div class="subtitle">MUSIC</div>
+
+    <div class="album">
+      <div class="album-title">Vantablack</div>
+      <div class="album-row">
+        <div class="album-left">
+        <img src="album1.jpg" alt="Album 1" class="album-cover" />
+        <div class="album-id">UUO-001</div> <!-- ←ここに移動 -->
+      </div>
+        <div class="tracklist">
+          <div class="track">
+            <div class="track-info">
+              <button class="play-button" onclick="playTrack(this, 'Somber.mp3')">▶</button>
+              01. Somber
+            </div>
+            <span class="length">4:35</span>
+          </div>
+          <div class="track">
+            <div class="track-info">
+              <button class="play-button" onclick="playTrack(this, 'oblivion.mp3')">▶</button>
+              02. oblivion
+            </div>
+            <span class="length">3:52</span>
+          </div>
+          <div class="track">
+            <div class="track-info">
+              <button class="play-button" onclick="playTrack(this, 'Kasure.mp3')">▶</button>
+              03. Kasure
+            </div>
+            <span class="length">5:05</span>
+          </div>
+          <div class="track">
+            <div class="track-info">
+              <button class="play-button" onclick="playTrack(this, 'appllo.mp3')">▶</button>
+              04. Appllo
+            </div>
+            <span class="length">4:48</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="album">
+      <div class="album-title">eggshell</div>
+      <div class="album-row">
+        <div class="album-left">
+        <img src="album2.jpg" alt="Album 2" class="album-cover" />
+        <div class="album-id">UUO-002</div>
+      </div>
+        <div class="tracklist">
+          <div class="track">
+            <div class="track-info">
+              <button class="play-button" onclick="playTrack(this, 'comfy.mp3')">▶</button>
+              01. comfy 
+            </div>
+            <span class="length">3:50</span>
+          </div>
+          <div class="track">
+            <div class="track-info">
+              <button class="play-button" onclick="playTrack(this, 'Echo.mp3')">▶</button>
+              02. Echo 
+            </div>
+            <span class="length">4:20</span>
+          </div>
+          <div class="track">
+            <div class="track-info">
+              <button class="play-button" onclick="playTrack(this, '90s.mp3')">▶</button>
+              03. 90's 
+            </div>
+            <span class="length">6:22</span>
+          </div>
+          
+          <div class="track">
+            <div class="track-info">
+              <button class="play-button" onclick="playTrack(this, 'spring Hi.mp3')">▶</button>
+              04. spring Hi 
+            </div>
+            <span class="length">3:30</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="artist">
+    <div class="subtitle">ABOUT</div>
+    <div class="artist-description">
+      <p>
+        Unknown Useless Orchestraは、電子音楽を中心とした音のプロジェクトとして静かに始動。<br />
+        明確なスタイルや目的を掲げることなく、ただ音の流れに身を任せるように制作を続けている。<br />
+        DTMを用いて構築される楽曲は、ジャンルの枠を曖昧にしながら、ゆるやかに漂う。
+      </p>
+      <p>
+        “Orchestra”という名前に、特別な意味はないのかもしれない。<br />
+        詳細は語られていない。ただ、音だけがそこにある。
+      </p>
+      <p style="margin-top: 2em;">
+        Unknown Useless Orchestra quietly began as a sound project centered on electronic music.<br />
+        Without declaring a clear style or purpose, it continues to create by following the natural flow of sound.<br />
+        Each track is composed using DTM, drifting gently across blurred genre boundaries.
+      </p>
+      <p>
+        The name “Orchestra” may carry no particular meaning.<br />
+        Little else is explained. Only the sound remains.<br /><br />
+      </p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="subtitle">CONTACT</div>
+  </section>
+  </main>
+  <footer class="site-footer">
+    <hr />
+    <div class="footer-text">© Nocturnus Sounds</div>
+  </footer>
+
+  <script>
+    let currentAudio = null;
+    let currentButton = null;
+    let currentWave = null;
+    let currentText = null;
+  
+    function playTrack(button, src) {
+      // 同じボタンを押した場合は停止として扱う
+      if (currentAudio && currentButton === button) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio = null;
+  
+        button.textContent = '▶';
+        if (currentWave) currentWave.remove();
+        if (currentText) currentText.remove();
+        currentWave = null;
+        currentText = null;
+        currentButton = null;
+        return;
+      }
+  
+      // 他の音声が再生中なら停止
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        if (currentButton) currentButton.textContent = '▶';
+        if (currentWave) currentWave.remove();
+        if (currentText) currentText.remove();
+      }
+  
+      // 新しいオーディオをセット
+      const audio = new Audio(src);
+      currentAudio = audio;
+      currentButton = button;
+      audio.play();
+  
+      // ボタンを停止マークに
+      button.textContent = '■';
+  
+      // 波形エフェクト
+      const wave = document.createElement('div');
+      wave.className = 'wave';
+      for (let i = 0; i < 3; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'bar';
+        wave.appendChild(bar);
+      }
+      currentWave = wave;
+      button.parentNode.appendChild(wave);
+  
+      // "now playing" 表示
+      const playingText = document.createElement('span');
+      playingText.className = 'now-playing';
+      playingText.textContent = 'now playing';
+      button.parentNode.appendChild(playingText);
+      currentText = playingText;
+  
+      // 再生終了時の処理
+      audio.addEventListener('ended', () => {
+        button.textContent = '▶';
+        if (wave) wave.remove();
+        if (playingText) playingText.remove();
+        currentAudio = null;
+        currentButton = null;
+        currentWave = null;
+        currentText = null;
+      });
+    }
+
+  
+ 
+  </script>
+
+</body>
+</html>
