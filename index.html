@@ -141,77 +141,92 @@
   </footer>
 
   <script>
-    let currentAudio = null;
-    let currentButton = null;
-    let currentWave = null;
-    let currentText = null;
-  
-    function playTrack(button, src) {
-      // 同じボタンを押した場合は停止として扱う
-      if (currentAudio && currentButton === button) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-        currentAudio = null;
-  
-        button.textContent = '▶';
-        if (currentWave) currentWave.remove();
-        if (currentText) currentText.remove();
-        currentWave = null;
-        currentText = null;
-        currentButton = null;
-        return;
-      }
-  
-      // 他の音声が再生中なら停止
-      if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-        if (currentButton) currentButton.textContent = '▶';
-        if (currentWave) currentWave.remove();
-        if (currentText) currentText.remove();
-      }
-  
-      // 新しいオーディオをセット
-      const audio = new Audio(src);
-      currentAudio = audio;
-      currentButton = button;
-      audio.play();
-  
-      // ボタンを停止マークに
-      button.textContent = '■';
-  
-      // 波形エフェクト
-      const wave = document.createElement('div');
-      wave.className = 'wave';
-      for (let i = 0; i < 3; i++) {
-        const bar = document.createElement('div');
-        bar.className = 'bar';
-        wave.appendChild(bar);
-      }
-      currentWave = wave;
-      button.parentNode.appendChild(wave);
-  
-      // "now playing" 表示
-      const playingText = document.createElement('span');
-      playingText.className = 'now-playing';
-      playingText.textContent = 'now playing';
-      button.parentNode.appendChild(playingText);
-      currentText = playingText;
-  
-      // 再生終了時の処理
-      audio.addEventListener('ended', () => {
-        button.textContent = '▶';
-        if (wave) wave.remove();
-        if (playingText) playingText.remove();
-        currentAudio = null;
-        currentButton = null;
-        currentWave = null;
-        currentText = null;
-      });
-    }
+   let currentAudio = null;
+let currentButton = null;
+let currentWave = null;
+let currentText = null;
+let stopTimeout = null; // ⬅ 追加：30秒停止用のタイマー変数
 
-  
- 
+function playTrack(button, src) {
+  // 同じボタンを押した場合は停止として扱う
+  if (currentAudio && currentButton === button) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    currentAudio = null;
+
+    button.textContent = '▶';
+    if (currentWave) currentWave.remove();
+    if (currentText) currentText.remove();
+    currentWave = null;
+    currentText = null;
+    currentButton = null;
+
+    if (stopTimeout) clearTimeout(stopTimeout); // ⬅ タイマーもクリア
+    return;
+  }
+
+  // 他の音声が再生中なら停止
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    if (currentButton) currentButton.textContent = '▶';
+    if (currentWave) currentWave.remove();
+    if (currentText) currentText.remove();
+    if (stopTimeout) clearTimeout(stopTimeout); // ⬅ タイマーもクリア
+  }
+
+  // 新しいオーディオをセット
+  const audio = new Audio(src);
+  currentAudio = audio;
+  currentButton = button;
+  audio.play();
+
+  button.textContent = '■';
+
+  // 波形エフェクト
+  const wave = document.createElement('div');
+  wave.className = 'wave';
+  for (let i = 0; i < 3; i++) {
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    wave.appendChild(bar);
+  }
+  currentWave = wave;
+  button.parentNode.appendChild(wave);
+
+  // "now playing" 表示
+  const playingText = document.createElement('span');
+  playingText.className = 'now-playing';
+  playingText.textContent = 'now playing';
+  button.parentNode.appendChild(playingText);
+  currentText = playingText;
+
+  // ⏱️ 30秒後に強制停止
+  stopTimeout = setTimeout(() => {
+    audio.pause();
+    audio.currentTime = 0;
+    button.textContent = '▶';
+    if (currentWave) currentWave.remove();
+    if (currentText) currentText.remove();
+    currentAudio = null;
+    currentButton = null;
+    currentWave = null;
+    currentText = null;
+  }, 35000); // 35000ミリ秒 = 35秒
+
+  // 再生終了時の処理
+  audio.addEventListener('ended', () => {
+    button.textContent = '▶';
+    if (wave) wave.remove();
+    if (playingText) playingText.remove();
+    currentAudio = null;
+    currentButton = null;
+    currentWave = null;
+    currentText = null;
+
+    if (stopTimeout) clearTimeout(stopTimeout); // ⬅ 終了時にタイマーもクリア
+  });
+}
   </script>
 
 </body>
