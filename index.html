@@ -162,7 +162,6 @@
         if (currentWave) currentWave.remove();
         if (currentText) currentText.remove();
         if (currentTimeDisplay) currentTimeDisplay.remove();
-        clearTimeout(stopTimeout);
         clearInterval(currentTimer);
     
         currentAudio = null;
@@ -181,7 +180,6 @@
         if (currentWave) currentWave.remove();
         if (currentText) currentText.remove();
         if (currentTimeDisplay) currentTimeDisplay.remove();
-        clearTimeout(stopTimeout);
         clearInterval(currentTimer);
       }
     
@@ -225,23 +223,6 @@
           timeDisplay.textContent = `${minutes}:${seconds}`;
         }
       }, 1000);
-    
-      // 35秒で強制停止
-      stopTimeout = setTimeout(() => {
-        audio.pause();
-        audio.currentTime = 0;
-        button.textContent = '▶';
-        if (currentWave) currentWave.remove();
-        if (currentText) currentText.remove();
-        if (currentTimeDisplay) currentTimeDisplay.remove();
-        clearInterval(currentTimer);
-    
-        currentAudio = null;
-        currentButton = null;
-        currentWave = null;
-        currentText = null;
-        currentTimeDisplay = null;
-      }, 35000);
     
       // 再生終了時
       audio.addEventListener('ended', () => {
