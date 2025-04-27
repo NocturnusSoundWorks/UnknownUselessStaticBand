@@ -20,7 +20,7 @@
   </header>
 
   <main>
-  <div style="text-align: center; margin-top: 2em; font-size: 1.２em;">
+  <div style="text-align: center; margin-top: 2em; font-size: 1.2em;">
     Welcome to UUO Site.<br /><br />
   </div>
 
@@ -151,6 +151,8 @@
     let currentTimeDisplay = null;
     let stopTimeout = null;
     let currentTimer = null;
+    let currentFullVersion = null;
+
     
     function playTrack(button, src) {
       // 同じボタンを押した場合は停止として扱う
@@ -179,6 +181,7 @@
         if (currentButton) currentButton.textContent = '▶';
         if (currentWave) currentWave.remove();
         if (currentText) currentText.remove();
+        if (currentFullVersion) currentFullVersion.remove();
         if (currentTimeDisplay) currentTimeDisplay.remove();
         clearInterval(currentTimer);
       }
@@ -208,11 +211,19 @@
       button.parentNode.appendChild(playingText);
       currentText = playingText;
     
-      // 秒数表示スパン
+      // "Full Version" 表示
+      const fullVersion = document.createElement('span');
+      fullVersion.className = 'full-version';
+      fullVersion.textContent = 'Full Version ';
+      button.parentNode.appendChild(fullVersion);
+      currentFullVersion = fullVersion; 
+
+    // 秒数表示スパン
       const timeDisplay = document.createElement('span');
       timeDisplay.className = 'time-display';
       timeDisplay.textContent = '0:00';
       button.parentNode.appendChild(timeDisplay);
+
       currentTimeDisplay = timeDisplay;
     
       // 秒数カウント処理
@@ -229,6 +240,7 @@
         button.textContent = '▶';
         if (currentWave) currentWave.remove();
         if (currentText) currentText.remove();
+        if (currentFullVersion) currentFullVersion.remove();
         if (currentTimeDisplay) currentTimeDisplay.remove();
         clearInterval(currentTimer);
     
@@ -236,6 +248,7 @@
         currentButton = null;
         currentWave = null;
         currentText = null;
+        currentFullVersion = null; 
         currentTimeDisplay = null;
       });
     }
