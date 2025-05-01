@@ -213,4 +213,21 @@
     html {
       scroll-behavior: smooth;
     }
+    .now-playing {
+      margin-left: 10px;
+      font-weight: bold;
+    }
     
+    .time-display {
+      margin-left: 5px;
+      color: #666;
+      font-size: 0.9em;
+    }
+    .now-playing {
+      margin-left: 10px;
+    }
+    .full-version {
+      margin-left: 5px;
+      color: red;
+      font-size: 0.9em;
+    }
