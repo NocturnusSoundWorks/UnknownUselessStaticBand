@@ -67,6 +67,14 @@
             </div>
             <span class="length">3:30</span>
           </div>
+          <div class="track">
+            <div class="track-info">
+              <button class="play-button" onclick="playTrack(this, 'ChromaticRust.mp3')">▶</button>
+              05. Chromatic Rust 
+            </div>
+            <span class="length">4:14</span>
+          </div>
+          
         </div>
       </div>
     </div>
@@ -111,7 +119,7 @@
       </div>
     </div>
 
-    
+
   </section>
 
   <section id="artist">
@@ -173,6 +181,7 @@
         button.textContent = '▶';
         if (currentWave) currentWave.remove();
         if (currentText) currentText.remove();
+        if (currentFullVersion) currentFullVersion.remove(); 
         if (currentTimeDisplay) currentTimeDisplay.remove();
         clearInterval(currentTimer);
     
