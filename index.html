@@ -179,12 +179,15 @@
     
     <!-- White T-shirt -->
     <div style="text-align: center;">
-      <img src="white.png" alt="UUSB White T-shirt" style="width:220px; height:220px; object-fit:cover;">
-      <div style="margin-top: 1em; font-size: 0.9em;">
-        S, M, L, LL　￥5,600
-      </div>
-    </div>
-
+  <img src="white.png"
+       alt="UUSB White T-shirt"
+       style="width:220px; height:220px; object-fit:cover; cursor: zoom-in;"
+       onclick="showImage('whiteT.png')">
+  <div style="margin-top: 1em; font-size: 0.9em;">
+    S, M, L, LL　￥5,600
+  </div>
+</div>
+    
     <!-- Black T-shirt -->
     <div style="text-align: center;">
       <img src="black.png" alt="UUSB Black T-shirt" style="width:220px; height:220px; object-fit:cover;">
@@ -203,6 +206,11 @@
     <hr />
     <div class="footer-text">© Nocturnus Sounds</div>
   </footer>
+  
+  <!-- 画像モーダル本体（どこに置いてもOK。閉じタグ直前が分かりやすい） -->
+<div id="lightbox" class="lightbox" onclick="hideImage()">
+  <img id="lightbox-img" alt="">
+</div>
 
   <script>
     let currentAudio = null;
@@ -314,4 +322,15 @@
         currentTimeDisplay = null;
       });
     }
+
+      function showImage(src) {
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = src;
+    lb.style.display = 'flex';
+  }
+  function hideImage() {
+    document.getElementById('lightbox').style.display = 'none';
+  }
+
     </script>
