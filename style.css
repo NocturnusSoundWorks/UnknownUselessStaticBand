@@ -231,3 +231,18 @@
       color: red;
       font-size: 0.9em;
     }
+/* 画像拡大用のモーダル */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;            /* 非表示から開始 */
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: zoom-out;         /* クリックで閉じられそうな見た目 */
+}
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+}
