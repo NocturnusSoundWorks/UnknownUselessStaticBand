@@ -246,3 +246,7 @@
   max-width: 90vw;
   max-height: 90vh;
 }
+.social-icon {
+  width: 24px;  /* ここで横幅を調整 */
+  height: auto; /* 縦は自動でバランスを取る */
+}
